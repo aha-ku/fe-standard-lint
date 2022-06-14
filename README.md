@@ -1,0 +1,2 @@
+# fe-standard-lint
+lint
