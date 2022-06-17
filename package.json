@@ -9,7 +9,8 @@
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier '**/*.{js,ts}' --write",
     "compile": "rimraf temp && rimraf types && tsc",
-    "types": "tsc && rimraf temp"
+    "types": "tsc && rimraf temp",
+    "pre-commit":"lint-staged"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run pre-commit"
     }
   },
   "lint-staged": {
