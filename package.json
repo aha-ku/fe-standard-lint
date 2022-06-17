@@ -7,10 +7,10 @@
   "scripts": {
     "lint": "eslint '**/*.{js,ts}'",
     "lint:fix": "npm run format && npm run lint -- --fix",
-    "format": "prettier 'src/**/*.{js,ts}' --write",
+    "format": "prettier '**/*.{js,ts}' --write",
     "compile": "rimraf temp && rimraf types && tsc",
     "types": "tsc && rimraf temp",
-    "pre-commit":"lint-staged"
+    "pre-commit": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,js}": [
-      "npm run lint:fix "
+      "npm run lint "
     ]
   }
 }
