@@ -1,0 +1,45 @@
+{
+  "name": "fe-standard-lint",
+  "version": "1.0.0",
+  "description": "lint",
+  "main": "./temp/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "prepare": "npx husky install",
+    "lint": "eslint '**/*.{js,ts}'",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier '**/*.{js,ts}' --write",
+    "compile": "rimraf temp && rimraf types && tsc",
+    "types": "tsc && rimraf temp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aha-ku/fe-standard-lint.git"
+  },
+  "keywords": [],
+  "author": "zjfcool",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aha-ku/fe-standard-lint/issues"
+  },
+  "homepage": "https://github.com/aha-ku/fe-standard-lint#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.1",
+    "prettier": "^2.7.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.3"
+  },
+  "lint-staged": {
+    "**/*.{ts,js}": [
+      "npm run lint:fix "
+    ]
+  }
+}
