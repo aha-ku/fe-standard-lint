@@ -2,17 +2,23 @@
   "name": "fe-standard-lint",
   "version": "1.0.0",
   "description": "lint",
-  "main": "./temp/index.js",
+  "main": "./dist/bundle.esm.js",
   "types": "./types/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
   "scripts": {
-    "commit":"git-cz",
+    "commit": "git-cz",
     "prepare": "npx husky install",
     "lint": "eslint '**/*.{js,ts}'",
     "lint:fix": "npm run format && npm run lint -- --fix",
     "format": "prettier '**/*.{js,ts}' --write",
     "compile": "rimraf temp && rimraf types && tsc",
-    "types": "tsc && rimraf temp",
-    "pre-commit": "lint-staged"
+    "types": "rimraf types && tsc && rimraf temp",
+    "pre-commit": "lint-staged",
+    "prebuild":"rimraf dist && npm run types",
+    "build":"rollup -c"
   },
   "repository": {
     "type": "git",
@@ -26,6 +32,9 @@
   },
   "homepage": "https://github.com/aha-ku/fe-standard-lint#readme",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.3",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "commitizen": "^4.2.4",
@@ -38,6 +47,8 @@
     "lint-staged": "^13.0.1",
     "prettier": "^2.7.0",
     "rimraf": "^3.0.2",
+    "rollup": "^2.75.6",
+    "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.7.3"
   },
   "lint-staged": {
@@ -46,8 +57,8 @@
     ]
   },
   "config": {
-    "commitizen":{
-      "path":"./node_modules/cz-conventional-changelog"
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }
