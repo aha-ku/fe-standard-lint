@@ -5,6 +5,8 @@
   "main": "./temp/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
+    "commit":"npx git-cz",
+    "prepare": "npx husky install",
     "lint": "eslint '**/*.{js,ts}'",
     "lint:fix": "npm run format && npm run lint -- --fix",
     "format": "prettier '**/*.{js,ts}' --write",
@@ -24,13 +26,14 @@
   },
   "homepage": "https://github.com/aha-ku/fe-standard-lint#readme",
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
+    "git-cz": "^4.9.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.1",
     "prettier": "^2.7.0",
@@ -39,7 +42,12 @@
   },
   "lint-staged": {
     "src/**/*.{ts,js}": [
-      "npm run lint "
+      "npm run lint:fix "
     ]
+  },
+  "config": {
+    "commitzen":{
+      "path":"cz-conventional-changelog"
+    }
   }
 }
