@@ -15,10 +15,10 @@
     "lint:fix": "npm run format && npm run lint -- --fix",
     "format": "prettier '**/*.{js,ts}' --write",
     "compile": "rimraf temp && rimraf types && tsc",
-    "types": "rimraf types && tsc && rimraf temp",
+    "types": "rimraf types && tsc --emitDeclarationOnly",
     "pre-commit": "lint-staged",
-    "prebuild":"rimraf dist && npm run types",
-    "build":"rollup -c"
+    "prebuild": "rimraf dist && npm run types",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
