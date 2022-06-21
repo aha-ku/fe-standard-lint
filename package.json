@@ -2,8 +2,8 @@
   "name": "fe-standard-lint",
   "version": "1.0.0",
   "description": "lint",
-  "main": "./dist/bundle.esm.js",
-  "types": "./types/index.d.ts",
+  "main": "./dist/fe-standard-lint.esm.js",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist",
     "types"
@@ -17,8 +17,10 @@
     "compile": "rimraf temp && rimraf types && tsc",
     "types": "rimraf types && tsc --emitDeclarationOnly",
     "pre-commit": "lint-staged",
-    "prebuild": "rimraf dist && npm run types",
-    "build": "rollup -c"
+    "build:dts":"dts-bundle-generator -o dist/types/index.d.ts ./src/index.ts",
+    "prebuild": "rimraf dist",
+    "build": "rollup -c",
+    "postbuild":"npm run build:dts"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,7 @@
     "@typescript-eslint/parser": "^5.28.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
+    "dts-bundle-generator": "^6.12.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
